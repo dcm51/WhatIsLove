@@ -33,10 +33,10 @@ void setup()
 void loop()
 { 
   accelerometer.read(); // updates the x, y, and z axis readings on the acceleromter
-
+ 
   while (accelerometer.x < 750) // prevents the RedBot from running until it detects a bump
   { 
-    // do nothing
+    accelerometer.read();
   }
   
   /** DANCE ROUTINE **/
@@ -44,37 +44,121 @@ void loop()
   rest(17);
   for (int i = 0; i<10; i++)
   {
-    playNote(noteG3, 1);
-    playNote(noteG3, .75);
-    playNote(noteG3, .25);
-    rest(.5);
-    playNote(noteG3, .5);
-    rest(.5);
-    playNote(noteF3, .5);
-  
-    playNote(noteBb3, 1);
-    playNote(noteBb3, .75);
-    playNote(noteBb3, .25);
-    rest(.5);
-    playNote(262, .5);
-    rest(.5);
-    playNote(294, .5);
-  
-    playNote(294, 1);
-    playNote(294, .75);
-    playNote(294, .25);
-    rest(.5);
-    playNote(294, .5);
-    rest(.5);
-    playNote(294, .5);
-      
-    playNote(349, 1);
-    playNote(349, .75);
-    playNote(349, .25);
-    rest(.5);
-    playNote(294, .5);
-    rest(.5);
-    playNote(349, .5);
+    int note = noteG3;
+    /*****BEAT 1 OF PHRASE 1: G FOR 1 BEAT*****/
+    motors.leftMotor(150); motors.rightMotor(150); // start a left twitch
+    tone(buzzerPin, note); // start playing G3; will play for 1 beat
+    delay(7500/beat); motors.brake(); // stop twitch
+    delay(22500/beat); motors.leftMotor(-150); motors.rightMotor(-150); // start a right twitch
+    delay(7500/beat); motors.brake(); // stop twitch
+    delay(22500/beat); noTone(buzzerPin); // stop the note. We have completed 1 beat; we will repeat this process for 3 more beats in order to finish a phrase
+    /*****BEAT 2 OF PHRASE 1: G FOR .75, G FOR .25*****/
+    motors.leftMotor(150); motors.rightMotor(150);
+    tone(buzzerPin, note);
+    delay(7500/beat); motors.brake();
+    delay(22500/beat); motors.leftMotor(-150); motors.rightMotor(-150);
+    delay(7500/beat); motors.brake();
+    delay(7500/beat); noTone(buzzerPin);
+    tone(buzzerPin, noteG3); delay(15000/beat); noTone(buzzerPin);
+    /*****BEAT 3 OF PHRASE 1: REST FOR .5, G FOR .5*****/
+    motors.leftMotor(150); motors.rightMotor(150);
+    delay(7500/beat); motors.brake();
+    delay(22500/beat); motors.leftMotor(-150); motors.rightMotor(-150); tone(buzzerPin, note);
+    delay(7500/beat); motors.brake();
+    delay(22500/beat); noTone(buzzerPin);
+    /*****BEAT 4 OF PHRASE 1: REST FOR .5, F FOR .5*****/
+    motors.leftMotor(150); motors.rightMotor(150);
+    delay(7500/beat); motors.brake();
+    delay(22500/beat); motors.leftMotor(-150); motors.rightMotor(-150); tone(buzzerPin, noteF3);
+    delay(7500/beat); motors.brake();
+    delay(22500/beat); noTone(buzzerPin);
+    
+    note = noteBb3;
+    /*****BEAT 1 OF PHRASE 2: G FOR 1 BEAT*****/
+    motors.leftMotor(150); motors.rightMotor(150); // start a left twitch
+    tone(buzzerPin, note); // start playing G3; will play for 1 beat
+    delay(7500/beat); motors.brake(); // stop twitch
+    delay(22500/beat); motors.leftMotor(-150); motors.rightMotor(-150); // start a right twitch
+    delay(7500/beat); motors.brake(); // stop twitch
+    delay(22500/beat); noTone(buzzerPin); // stop the note. We have completed 1 beat; we will repeat this process for 3 more beats in order to finish a phrase
+    /*****BEAT 2 OF PHRASE 2: G FOR .75, G FOR .25*****/
+    motors.leftMotor(150); motors.rightMotor(150);
+    tone(buzzerPin, note);
+    delay(7500/beat); motors.brake();
+    delay(22500/beat); motors.leftMotor(-150); motors.rightMotor(-150);
+    delay(7500/beat); motors.brake();
+    delay(7500/beat); noTone(buzzerPin);
+    tone(buzzerPin, note); delay(15000/beat); noTone(buzzerPin);
+    /*****BEAT 3 OF PHRASE 2: REST FOR .5, G FOR .5*****/
+    motors.leftMotor(150); motors.rightMotor(150);
+    delay(7500/beat); motors.brake();
+    delay(22500/beat); motors.leftMotor(-150); motors.rightMotor(-150); tone(buzzerPin, noteC4);
+    delay(7500/beat); motors.brake();
+    delay(22500/beat); noTone(buzzerPin);
+    /*****BEAT 4 OF PHRASE 2: REST FOR .5, F FOR .5*****/
+    motors.leftMotor(150); motors.rightMotor(150);
+    delay(7500/beat); motors.brake();
+    delay(22500/beat); motors.leftMotor(-150); motors.rightMotor(-150); tone(buzzerPin, noteD4);
+    delay(7500/beat); motors.brake();
+    delay(22500/beat); noTone(buzzerPin);
+    
+    note = noteD4;
+    /*****BEAT 1 OF PHRASE 3: G FOR 1 BEAT*****/
+    motors.leftMotor(150); motors.rightMotor(150); // start a left twitch
+    tone(buzzerPin, note); // start playing G3; will play for 1 beat
+    delay(7500/beat); motors.brake(); // stop twitch
+    delay(22500/beat); motors.leftMotor(-150); motors.rightMotor(-150); // start a right twitch
+    delay(7500/beat); motors.brake(); // stop twitch
+    delay(22500/beat); noTone(buzzerPin); // stop the note. We have completed 1 beat; we will repeat this process for 3 more beats in order to finish a phrase
+    /*****BEAT 2 OF PHRASE 3: G FOR .75, G FOR .25*****/
+    motors.leftMotor(150); motors.rightMotor(150);
+    tone(buzzerPin, note);
+    delay(7500/beat); motors.brake();
+    delay(22500/beat); motors.leftMotor(-150); motors.rightMotor(-150);
+    delay(7500/beat); motors.brake();
+    delay(7500/beat); noTone(buzzerPin);
+    tone(buzzerPin, note); delay(15000/beat); noTone(buzzerPin);
+    /*****BEAT 3 OF PHRASE 3: REST FOR .5, G FOR .5*****/
+    motors.leftMotor(150); motors.rightMotor(150);
+    delay(7500/beat); motors.brake();
+    delay(22500/beat); motors.leftMotor(-150); motors.rightMotor(-150); tone(buzzerPin, note);
+    delay(7500/beat); motors.brake();
+    delay(22500/beat); noTone(buzzerPin);
+    /*****BEAT 4 OF PHRASE 3: REST FOR .5, F FOR .5*****/
+    motors.leftMotor(150); motors.rightMotor(150);
+    delay(7500/beat); motors.brake();
+    delay(22500/beat); motors.leftMotor(-150); motors.rightMotor(-150); tone(buzzerPin, note);
+    delay(7500/beat); motors.brake();
+    delay(22500/beat); noTone(buzzerPin);
+    
+    note = noteF4;
+    /*****BEAT 1 OF PHRASE 4: G FOR 1 BEAT*****/
+    motors.leftMotor(150); motors.rightMotor(150); // start a left twitch
+    tone(buzzerPin, note); // start playing G3; will play for 1 beat
+    delay(7500/beat); motors.brake(); // stop twitch
+    delay(22500/beat); motors.leftMotor(-150); motors.rightMotor(-150); // start a right twitch
+    delay(7500/beat); motors.brake(); // stop twitch
+    delay(22500/beat); noTone(buzzerPin); // stop the note. We have completed 1 beat; we will repeat this process for 3 more beats in order to finish a phrase
+    /*****BEAT 2 OF PHRASE 4: G FOR .75, G FOR .25*****/
+    motors.leftMotor(150); motors.rightMotor(150);
+    tone(buzzerPin, note);
+    delay(7500/beat); motors.brake();
+    delay(22500/beat); motors.leftMotor(-150); motors.rightMotor(-150);
+    delay(7500/beat); motors.brake();
+    delay(7500/beat); noTone(buzzerPin);
+    tone(buzzerPin, note); delay(15000/beat); noTone(buzzerPin);
+    /*****BEAT 3 OF PHRASE 4: REST FOR .5, G FOR .5*****/
+    motors.leftMotor(150); motors.rightMotor(150);
+    delay(7500/beat); motors.brake();
+    delay(22500/beat); motors.leftMotor(-150); motors.rightMotor(-150); tone(buzzerPin, noteD4);
+    delay(7500/beat); motors.brake();
+    delay(22500/beat); noTone(buzzerPin);
+    /*****BEAT 4 OF PHRASE 4: REST FOR .5, F FOR .5*****/
+    motors.leftMotor(150); motors.rightMotor(150);
+    delay(7500/beat); motors.brake();
+    delay(22500/beat); motors.leftMotor(-150); motors.rightMotor(-150); tone(buzzerPin, noteF4);
+    delay(7500/beat); motors.brake();
+    delay(22500/beat); noTone(buzzerPin);
   }  
   
   /**while (D12NOTPRESSED) // prevents the routine from running again until the user presses D12
@@ -82,66 +166,5 @@ void loop()
     // do nothing
   }**/
 }
-
-void playNote(int freq, double fraction)
-{
-  tone(buzzerPin, freq);
-  int duration = (int) ((fraction/beat) * 60 * 1000);
-  delay(duration); 
-  noTone(buzzerPin);   // Stop playing the tone.
-  //delay(500); 
-  
-}
-
-void rest(double fraction)
-{
-  int duration = (int) ((fraction/beat) * 60 * 1000);
-  delay(duration); 
-  //delay(500); 
-}
-
-void lbob(void)
-{
-  // Pivot to the left in time to the music
-  motors.rightMotor(150); // Turn CCW at motorPower of 100
-  motors.leftMotor(150);  // Turn CCW at motorPower of 100
-  delay(7500/beat);            
-  motors.brake();    // brake() motors
-  delay(22500/beat);
-}
-
-void rbob(void)
-{
-  // Pivot to the right in time to the music
-  motors.rightMotor(-150); // Turn CCW at motorPower of 100
-  motors.leftMotor(-150);  // Turn CCW at motorPower of 100
-  delay(7500/beat);       
-  motors.brake();    // brake() motors
-  delay(22500/beat);
-}
-
-void measure(float notes[])
-{
-  // Determine the number of notes
-  int numberNotes = (sizeof(notes) / sizeof(float)) / 2;
-  if (numberNotes == 0) 
-  {
-    // Run the motor
-  speed *= -1;
-  motors.rightMotor(speed);
-  motors.leftMotor(speed);
-  delay(7500/beat);
-  }
-  // Set up the notes
-  
-  // Run the motor
-  speed *= -1;
-  motors.rightMotor(speed);
-  motors.leftMotor(speed);
-  delay(7500/beat);
-  
-  // Go through the rest of the notes
-}
-
 
 

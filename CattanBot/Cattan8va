@@ -1,0 +1,491 @@
+/***********************************************************************
+ * WIL_Lyric- 1 of 3 parts of the RedBot "What is Love" dance routine
+ * Intended to be used alongside WIL_Baseline and WIL_Lyric_8VA
+ * 
+ * Written by Bianca De, Kevin Gilboy and Dylan McGuire
+ * Created on 2015 January 24, last modified 2015 January 25
+ * 
+ * Written for ENGR 0716 at the University of Pittsburgh.
+ * Completely free for any use, including clubbing.
+ * 
+ ***********************************************************************/
+
+#include <RedBot.h>
+RedBotMotors motors;
+RedBotAccel accelerometer;
+
+
+// Create a couple of constants for our pins.
+const int buzzerPin = 9;
+const int buttonPin = 12;
+const int beat = 140; //Gives beats per milisecond
+const int fwdSpd = 120;
+const int pivotSpd = -80; //First
+const int pivotV = -255;
+const int sqLV = 86;
+const int sqRV = 80;
+int x = 0;
+
+// B/ms must be divided into beats to give miliseconds
+
+void setup()
+{
+  Serial.begin(9600);
+  pinMode(buttonPin, INPUT_PULLUP); // configures the button as an INPUT
+  // INPUT_PULLUP defaults it to HIGH.
+  pinMode(buzzerPin, OUTPUT);  // configures the buzzerPin as an OUTPUT
+}
+
+void loop()
+{ 
+accelerometer.read(); // updates the x, y, and z axis readings on the acceleromter
+
+  if ( accelerometer.x > 1250 && x !=1) // 
+  { 
+  x=1;
+  
+  playNote(1174, .5); //What
+  playNote(1396, .5);
+  motors.drive(60);
+  playNote(1568, 2.5);
+  
+  playNote(1174, .5); //Ba
+  playNote(1244, .5); //by
+  playNote(1174, .5); //Dont
+  motors.brake();
+  motors.drive(-60);
+  playNote(1396, 1); //Hurt
+  playNote(1174, 2.5); //Me
+  
+  playNote(1174, .5); //Dont
+  motors.brake();
+  motors.rightMotor(pivotSpd);
+  motors.leftMotor(pivotSpd);
+  playNote(1396, 1); //Hurt
+  playNote(1174, 2.5); //Me
+  playNote(1174, .5); //No
+  motors.brake();
+  motors.rightMotor(-1*pivotSpd - 10);
+  motors.leftMotor(-1*pivotSpd - 10);
+  playNote(1046, 4); //More....
+  motors.brake();
+  playNote(1046, .5); //More....
+  
+  rest(2);
+  playNote(1174, .5); //Ba
+  playNote(1244, .5); //by
+  playNote(1174, .5); //Dont
+  motors.brake();
+  motors.drive(80);
+  playNote(1396, 1); //Hurt
+  playNote(1174, 2.5); //Me
+  
+  playNote(1174, .5); //Dont
+  motors.brake();
+  motors.rightMotor(-1*pivotSpd);
+  motors.leftMotor(-1*pivotSpd);
+  playNote(1396, 1); //Hurt
+  playNote(1174, 2.5); //Me
+  playNote(1174, .5); //No
+  motors.brake();
+  motors.rightMotor(pivotSpd - 10);
+  motors.leftMotor(pivotSpd - 10);
+  playNote(1046, 4.5); //More....
+  motors.brake();
+
+//BASELINE INSTRUMENTAL
+
+  
+  rbob();
+  lbob();
+  rbob();
+  lbob();
+  rbob();
+  lbob();
+  rbob();
+  lbob();
+  rbob();
+  lbob();
+  rbob();
+  lbob();
+  rbob();
+  lbob();
+  rbob();
+  lbob();
+  rbob();
+  lbob();
+  rbob();
+  lbob();
+  rbob();
+  lbob();
+  rbob();
+  lbob();
+  rbob();
+  lbob();
+  rbob();
+  lbob();
+  rbob();
+  
+  playNote(1174, .5); //What
+  playNote(1396, .5); //Is
+  playNote(1568, 2.5); //Love
+
+  lbob();
+  rbob();
+  lbob();
+  rbob();
+  lbob();
+  rbob();
+  lbob();
+  rbob();
+  lbob();
+  rbob();
+  lbob();
+  rbob();
+  lbob();
+  rbob();
+  lbob();
+  rbob();
+  lbob();
+  rbob();
+  lbob();
+  rbob();
+  lbob();
+  rbob();
+  lbob();
+  rbob();
+  lbob();
+  rbob();
+
+  playNote(1174, 1); //No
+  playNote(1046, 1); //More....
+
+  lbob();
+  rbob();
+  lbob();
+  rbob();
+  lbob();
+  rbob();
+  rbob();
+  lbob();
+  rbob();
+  lbob();
+  rbob();
+  lbob();
+  rbob();
+  lbob();
+  rbob();
+  lbob();
+  rbob();
+  lbob();
+  rbob();
+  lbob();
+  rbob();
+  lbob();
+  rbob();
+  lbob();
+  rbob();
+  lbob();
+  rbob();
+  lbob();
+  rbob();
+  lbob();
+  rbob();
+  lbob();
+  rbob();
+  lbob();
+  
+  //VERSE
+  motors.leftDrive(100);//turn cw
+  playNote(1174, .5); //You
+  playNote(1046, .5); //
+  playNote(932, .5); //Dont
+  playNote(1174, .5); //
+  motors.brake();
+  motors.rightDrive(100);//turn ccw
+  playNote(1174, 2); //Care
+  
+  motors.brake();
+  motors.leftDrive(-100);//go back
+  motors.rightDrive(-100);
+  playNote(1174, .5); //
+  motors.brake();
+  playNote(1046, .5); //
+  motors.leftDrive(-100);//go back
+  motors.rightDrive(-100);
+  rest(.5);
+  motors.leftDrive(+100);//turn cw
+  motors.rightDrive(-100);
+  playNote(1174, 2); //
+  motors.brake();
+  playNote(1046, .5); //
+  
+  motors.leftDrive(100);//turn cw 
+  playNote(1174, .5); //
+  playNote(1244, .5); // Eb
+  playNote(1174, .5); //
+  playNote(1174, .5); //
+  motors.brake();
+ motors.leftDrive(100);//turn cw
+  playNote(1174, .5); //
+  playNote(1046, 1); //
+  playNote(1046, .5); //
+  
+  
+  motors.brake();
+  motors.leftDrive(-100);//go back
+  motors.rightDrive(-100);
+  playNote(1046, 1); //
+  motors.brake();
+  playNote(932, .5); //
+  motors.leftDrive(+100);//turn cw
+  motors.rightDrive(-100);
+  playNote(932, 2.5); //
+  motors.brake();
+  
+  //Sec
+  motors.leftDrive(100);//turn one cw
+  playNote(1174, .5); //You
+  motors.brake();
+   motors.leftDrive(-100);//go back
+  motors.rightDrive(-100);
+  playNote(1046, 1); //
+  motors.brake();
+   motors.leftDrive(+100);//go forward
+  motors.rightDrive(+100);
+  playNote(1174, 2); //Care
+  motors.brake();
+ motors.rightDrive(100);//turn one ccw
+  playNote(1046, .5); //
+  
+  motors.brake();
+  motors.leftDrive(-100);//go back
+  motors.rightDrive(-100);
+  playNote(1174, .5); //
+  playNote(1046, .5); //
+  motors.brake();
+  rest(.5);
+  motors.brake();
+ motors.leftDrive(+100);//turn both cw
+  motors.rightDrive(-100); 
+  playNote(1174, 2.5); //
+  
+  motors.brake();
+ motors.leftDrive(100);//turn one cw
+  playNote(1174, .5); //
+  motors.brake();
+ motors.leftDrive(+100);//go forward
+  motors.rightDrive(+100);
+  playNote(1244, .5); // Eb
+  motors.brake();
+ motors.rightDrive(100);//turn one ccw
+  playNote(1174, .5); //
+  motors.brake();
+  motors.leftDrive(-70);//go back
+  motors.rightDrive(-75);
+  playNote(1174, 1); //
+  playNote(1046, 2); //
+  motors.brake();
+
+
+//Chor
+  playNote(1174, .5); //What
+  playNote(1396, .5); //is
+  
+  motors.rightMotor(201);
+  motors.leftMotor(0);
+  playNote(1568, 2); //love
+  motors.brake();
+  motors.rightMotor(0);
+  motors.leftMotor(201);
+  playNote(1568, .5); //love
+  
+  playNote(1174, .5); // Ba
+  playNote(1244, .5); // by
+  playNote(1174, .5); // Dont
+  motors.brake();
+  motors.rightMotor(0);
+  motors.leftMotor(-205);
+  playNote(1396, 1); //f
+  playNote(1174, 1); //
+  motors.brake();
+  motors.rightMotor(-205);
+  motors.leftMotor(0);
+  playNote(1174, 1.5); //
+  
+  playNote(1174, .5); // Dont
+  motors.brake();
+  motors.pivot(150);
+  playNote(1396, 1); //f
+  playNote(1174, 2.5); // Me
+  playNote(1174, .5); //
+  playNote(1046, 2.5); //
+  motors.brake();
+  
+  rest(.5);
+  
+  motors.brake();
+  playNote(1174, .5); //What
+  playNote(1396, .5); //is
+  
+  motors.rightMotor(0);
+  motors.leftMotor(201);
+  playNote(1568, 2); //love
+  motors.brake();
+  motors.rightMotor(201);
+  motors.leftMotor(0);
+  playNote(1568, .5); //love
+  
+  playNote(1174, .5); // Ba
+  playNote(1244, .5); // by
+  playNote(1174, .5); // Dont
+  motors.brake();
+  motors.rightMotor(-205);
+  motors.leftMotor(0);
+  playNote(1396, 1); //f
+  playNote(1174, 1); //
+  motors.brake();
+  motors.rightMotor(0);
+  motors.leftMotor(-205);
+  playNote(1174, 1.5); //
+  
+  playNote(1174, .5); // Dont
+  motors.brake();
+  motors.pivot(150);
+  playNote(1396, 1); //f
+  playNote(1174, 2.5); // Me
+  playNote(1174, .5); //
+  playNote(1046, 4.5); //
+  motors.brake();
+
+  lbob();
+  rbob();
+  lbob();
+  rbob();
+
+  //WOAHOHOHHH
+  motors.leftDrive(sqLV);
+  motors.rightDrive(sqRV);
+  playNote(1174, .5); //  
+  playNote(1396, .5); //
+  playNote(1568, .5); //
+  playNote(1864, .5); //
+  playNote(2092, .5); //
+  playNote(2348, .5); //
+  playNote(2092, .5); //
+  playNote(1864, 1); //
+  playNote(1568, .5); //
+  motors.brake();
+  motors.rightMotor(pivotV);
+  motors.leftMotor(pivotV);
+  playNote(1568, .5); //
+  rest(.1);
+  playNote(1864, .4); //
+  motors.brake();
+  
+  motors.leftDrive(sqLV);
+  motors.rightDrive(sqRV);
+  playNote(2092, .5); //
+  playNote(2348, .5); //
+  playNote(2092, .5); //
+  playNote(1864, 1); //
+  playNote(1568, 1.5); //
+  playNote(2092, 1); //
+  motors.brake();
+  motors.rightMotor(pivotV);
+  motors.leftMotor(pivotV);
+  playNote(2092, .5); //
+  playNote(1864, .5); //
+  motors.brake();
+  
+  motors.leftDrive(sqLV);
+  motors.rightDrive(sqRV);
+  playNote(1864, 2); //
+  
+  rest(2);
+  
+  //WOAHOHOHHH 2
+ 
+  playNote(1174, .5); //  
+  playNote(1396, .5); //
+  motors.brake();
+  motors.rightMotor(pivotV);
+  motors.leftMotor(pivotV);
+  playNote(1568, .5); //
+  playNote(1864, .5); //
+  motors.brake();
+  
+  motors.leftDrive(sqLV);
+  motors.rightDrive(sqRV);
+  playNote(2092, .5); //
+  playNote(2348, .5); //
+  playNote(2092, .5); //
+  playNote(1864, 1); //
+  playNote(1568, 1); //
+  rest(.1);
+  playNote(1864, .4); //
+  playNote(2092, .5); //
+  playNote(2348, .5); //
+  motors.brake();
+  motors.rightMotor(pivotV);
+  motors.leftMotor(pivotV);
+  playNote(2092, .5); //
+  playNote(1864, .5); //
+  motors.brake();
+  
+  motors.rightMotor(pivotV);
+  motors.leftMotor(pivotV);
+  playNote(1864, .5); //
+  playNote(1568, 1.5); //
+  playNote(2092, 1.5); //
+  playNote(1864, 2.5); //
+  motors.brake();
+  
+  }
+  else  // otherwise, do this.
+  { 
+  }
+
+}
+
+void playNote(int freq, double fraction){
+  tone(buzzerPin, freq);
+  int duration = (int) ((fraction/beat) * 60 * 1000);
+  delay(duration); 
+  noTone(buzzerPin);   // Stop playing the tone.
+  //delay(500); 
+}
+void rest(double fraction){
+  int duration = (int) ((fraction/beat) * 60 * 1000);
+  delay(duration); 
+  //delay(500); 
+}
+ void left() {
+  motors.stop();
+  motors.pivot (255);
+}
+ 
+void right() {
+ motors.stop();
+ motors.pivot (-255);
+}
+
+void lbob(void)
+{
+  // Pivot to the left in time to the music
+  motors.rightMotor(150); // Turn CCW at motorPower of 100
+  motors.leftMotor(150);  // Turn CCW at motorPower of 100
+  delay(7500/beat);            
+  motors.brake();    // brake() motors
+  delay(22500/beat);
+}
+
+void rbob(void)
+{
+  // Pivot to the right in time to the music
+  motors.rightMotor(-150); // Turn CCW at motorPower of 100
+  motors.leftMotor(-150);  // Turn CCW at motorPower of 100
+  delay(7500/beat);       
+  motors.brake();    // brake() motors
+  delay(22500/beat);
+}
